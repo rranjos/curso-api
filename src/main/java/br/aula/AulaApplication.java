@@ -8,7 +8,6 @@ public class AulaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AulaApplication.class,args);
-		
 	}
 
 }
