@@ -25,6 +25,9 @@ public class CadastroEntity {
 	@Column(name="telefone")
 	public Integer telefone;
 	
+	@Column(name="sexo")	
+	public String sexo;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -49,5 +52,10 @@ public class CadastroEntity {
 	public void setTelefone(Integer telefone) {
 		this.telefone = telefone;
 	}
-
+	public String getSexo() {
+	    return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 }
