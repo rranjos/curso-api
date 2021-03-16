@@ -19,5 +19,10 @@ public class CadastroServiceImpl implements CadastroService{
 	public List<CadastroEntity> listar() {		
 		return cadastroRepository.findAll();
 	}
+	
+	@Override
+	public List<CadastroEntity> consultar(String sexo){
+		return cadastroRepository.findBySexo(sexo);
+	}
 
 }
