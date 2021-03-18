@@ -29,8 +29,11 @@ public class CadastroController {
 
 	// TODO Mudar o parametro para telefone
 	@GetMapping(value = "/consultar")
-	public ResponseEntity<List<CadastroEntity>> consultar(@RequestParam("sexo") String sexo) {
-		List<CadastroEntity> lst = service.consultar(sexo);
+	public ResponseEntity<List<CadastroEntity>> consultar(
+			@RequestParam("telefone") String telefone,
+			@RequestParam("sexo") String sexo
+			) {
+		List<CadastroEntity> lst = service.consultar(telefone, sexo);
 		return ResponseEntity.ok(lst);
 	}
 

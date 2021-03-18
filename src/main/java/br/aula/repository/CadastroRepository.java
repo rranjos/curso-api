@@ -10,6 +10,6 @@ import br.aula.entidade.CadastroEntity;
 @Repository
 public interface CadastroRepository extends JpaRepository<CadastroEntity, Integer>{
 
-	List<CadastroEntity> findBySexo(String sexo);
+	List<CadastroEntity> findByTelefoneOrSexoIgnoreCase(Long telefone, String sexo);
 
 }

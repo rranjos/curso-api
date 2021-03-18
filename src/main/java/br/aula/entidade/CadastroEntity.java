@@ -23,7 +23,7 @@ public class CadastroEntity {
 	public String endereco;
 	
 	@Column(name="telefone")
-	public Integer telefone;
+	public Long telefone;
 	
 	@Column(name="sexo")	
 	public String sexo;
@@ -46,10 +46,10 @@ public class CadastroEntity {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public Integer getTelefone() {
+	public Long getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
 	public String getSexo() {

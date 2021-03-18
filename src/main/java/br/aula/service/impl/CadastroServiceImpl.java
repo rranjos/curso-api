@@ -1,6 +1,7 @@
 package br.aula.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,12 @@ public class CadastroServiceImpl implements CadastroService{
 	}
 	
 	@Override
-	public List<CadastroEntity> consultar(String sexo){
-		return cadastroRepository.findBySexo(sexo);
+	public List<CadastroEntity> consultar(String telefone,  String sexo){
+		
+		if(telefone.equals("")) {
+			telefone = "0";
+		}
+		return cadastroRepository.findByTelefoneOrSexoIgnoreCase(new Long(telefone), sexo);
 	}
 
 }
