@@ -22,12 +22,12 @@ public class CadastroServiceImpl implements CadastroService{
 	}
 	
 	@Override
-	public List<CadastroEntity> consultar(String telefone,  String sexo){
+	public List<CadastroEntity> consultar(String telefone,  String sexo, String endereco){
 		
 		if(telefone.equals("")) {
 			telefone = "0";
 		}
-		return cadastroRepository.findByTelefoneOrSexoIgnoreCase(new Long(telefone), sexo);
+		return cadastroRepository.findByTelefoneOrSexoIgnoreCaseOrEndereco(new Long(telefone), sexo, endereco);
 	}
-
+ 
 }

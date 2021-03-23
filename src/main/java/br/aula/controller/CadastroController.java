@@ -31,9 +31,10 @@ public class CadastroController {
 	@GetMapping(value = "/consultar")
 	public ResponseEntity<List<CadastroEntity>> consultar(
 			@RequestParam("telefone") String telefone,
-			@RequestParam("sexo") String sexo
+			@RequestParam("sexo") String sexo,
+			@RequestParam("endereco") String endereco
 			) {
-		List<CadastroEntity> lst = service.consultar(telefone, sexo);
+		List<CadastroEntity> lst = service.consultar(telefone, sexo, endereco);
 		return ResponseEntity.ok(lst);
 	}
 

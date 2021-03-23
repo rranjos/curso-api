@@ -10,6 +10,6 @@ import br.aula.entidade.CadastroEntity;
 public interface CadastroService {
 	
 	public List<CadastroEntity> listar ();
-	public List<CadastroEntity> consultar(String telefone, String sexo);	
+	public List<CadastroEntity> consultar(String telefone, String sexo, String endereco);
 
 }
