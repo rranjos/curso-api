@@ -27,7 +27,7 @@ public class CadastroServiceImpl implements CadastroService{
 		if(telefone.equals("")) {
 			telefone = "0";
 		}
-		return cadastroRepository.findByTelefoneOrSexoIgnoreCaseOrEndereco(new Long(telefone), sexo, endereco);
+		return cadastroRepository.consultarCadastro(new Long(telefone), sexo, endereco);
 	}
  
 }
