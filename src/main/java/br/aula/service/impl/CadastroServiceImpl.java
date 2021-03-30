@@ -29,5 +29,15 @@ public class CadastroServiceImpl implements CadastroService{
 		}
 		return cadastroRepository.consultarCadastro(new Long(telefone), sexo, endereco);
 	}
- 
+    
+	@Override
+	public Boolean salvar(CadastroEntity entity) {
+		
+		Boolean resposta = false;
+		
+		cadastroRepository.save(entity);
+		resposta = true;
+		
+		return resposta;
+	}
 }
