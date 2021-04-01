@@ -11,5 +11,6 @@ public interface CadastroService {
 	
 	public List<CadastroEntity> listar ();
 	public List<CadastroEntity> consultar(String telefone, String sexo, String endereco);
-
+	public Boolean salvar(CadastroEntity entity);
+	public Boolean deletar(Integer id);
 }

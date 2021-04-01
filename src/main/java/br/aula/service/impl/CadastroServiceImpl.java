@@ -1,6 +1,7 @@
 package br.aula.service.impl;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,28 @@ public class CadastroServiceImpl implements CadastroService{
 			telefone = "0";
 		}
 		return cadastroRepository.findByTelefoneOrSexoIgnoreCaseOrEndereco(new Long(telefone), sexo, endereco);
+	}
+
+	@Override
+	public Boolean salvar(CadastroEntity entity) {
+		
+		Boolean resposta = false;
+		
+		
+			
+			cadastroRepository.save(entity);
+			resposta = true;
+			
+		
+
+		
+		return resposta;
+	}
+
+	@Override
+	public Boolean deletar(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
  
 }
