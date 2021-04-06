@@ -40,4 +40,13 @@ public class CadastroServiceImpl implements CadastroService{
 		
 		return resposta;
 	}
+	
+	@Override
+	public Boolean deletar(Integer id) {
+		     CadastroEntity entity = new CadastroEntity();
+		     entity.setId(id);
+		     
+		     cadastroRepository.delete(entity);
+		     return true;
+	}
 }
