@@ -49,5 +49,31 @@ public class CadastroServiceImpl implements CadastroService{
 		cadastroRepository.delete(entity);
 		return true;
 	}
+
+	@Override
+	public Boolean editar(CadastroEntity entidade) {
+		
+		Optional<CadastroEntity> resultado = cadastroRepository.findById(entidade.getId());
+		CadastroEntity e = resultado.get();
+		
+		if(entidade.getNome() != null) {			
+			e.setNome(entidade.getNome());
+		}
+		
+		if(entidade.getEndereco() != null) {			
+			e.setEndereco(entidade.getEndereco());
+		}
+		
+		if(entidade.getSexo() != null) {			
+			e.setSexo(entidade.getSexo());
+		}
+		
+		if(entidade.getTelefone() != null) {			
+			e.setTelefone(entidade.getTelefone());
+		}
+		
+		cadastroRepository.save(e);
+		return true;
+	}
  
 }
