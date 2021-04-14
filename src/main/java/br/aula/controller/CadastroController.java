@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +55,14 @@ public class CadastroController {
 		Boolean deletado = service.deletar(id);
 		return ResponseEntity.ok(deletado);
 	}
+	
+	@PatchMapping
+	public ResponseEntity<Boolean> editar (@RequestBody CadastroEntity entidade){
+		
+		Boolean ehEditado = service.editar(entidade);
+		return ResponseEntity.ok(ehEditado);
+	}
+
 
 }
 
