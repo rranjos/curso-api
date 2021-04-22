@@ -41,13 +41,27 @@ public class CadastroServiceImpl implements CadastroService{
 		return resposta;
 	}
 
+	// TODO Implementar regra que só permita deletar usuários que não são do perfil adm
+	
 	@Override
 	public Boolean deletar(Integer id) {
+		
+		Boolean foiDeletado = false;
+		
 		CadastroEntity entity = new CadastroEntity();
 		entity.setId(id);
 		
-		cadastroRepository.delete(entity);
-		return true;
+		//recuperar o registro que será deletado.
+		Optional<CadastroEntity> resultado = cadastroRepository.findById(id);
+		CadastroEntity e = resultado.get();
+		
+		//vericar se o registro é do perfil adm. Se não for permitir deletar. Caso seja emitir mensagem de não permitido
+		if(!e.getPerfil().equals("adm")) {
+			cadastroRepository.delete(entity);	
+			foiDeletado = true;
+		}
+
+		return foiDeletado;
 	}
 
 	@Override
