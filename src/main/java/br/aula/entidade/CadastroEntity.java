@@ -28,6 +28,13 @@ public class CadastroEntity {
 	@Column(name="sexo")	
 	public String sexo;
 	
+	@Column(name = "perfil")
+	public String perfil;
+	
+	@Column(name = "ativo")
+	public Boolean ativo;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -57,5 +64,14 @@ public class CadastroEntity {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+	public Object getPerfil() {
+		return perfil;
+	}
+	public Boolean getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 }
