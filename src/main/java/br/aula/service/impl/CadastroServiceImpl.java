@@ -62,7 +62,7 @@ public class CadastroServiceImpl implements CadastroService{
 		CadastroEntity e = resultado.get();
 		
 		//Verificar se o registro é do perfil adm. Se não for permitir deletar. Caso seja emitir mensagem de não permitido
-		if(!e.getPerfil().equals("adm")) {
+		if(!e.getPerfil().equals("adm") && !e.getAtivo()) {
 			cadastroRepository.delete(entity);
 			foiDeletado = true;
 		}
