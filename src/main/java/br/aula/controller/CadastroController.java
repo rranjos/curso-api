@@ -30,7 +30,6 @@ public class CadastroController {
 		List<CadastroEntity> lst = service.listar();
 		return ResponseEntity.ok(lst);
 	}
-
 	@GetMapping(value = "/consultar")
 	public ResponseEntity<List<CadastroEntity>> consultar(
 			@RequestParam("telefone") String telefone,
@@ -46,12 +45,12 @@ public class CadastroController {
 		Boolean salvo = service.salvar(entidade);
 		return ResponseEntity.ok(salvo);
 	}
-	
+	//se nao for possivel deletar, informar ao usuario `nao foi possivel deletar o registro selecionado`
 	@DeleteMapping
-	public ResponseEntity<Boolean> deletar(@RequestParam("identificador") Integer id){
+	public ResponseEntity<String> deletar(@RequestParam("identificador") Integer id){
 		
-		Boolean deletado = service.deletar(id);
-		return ResponseEntity.ok(deletado);
+		String mensagem = service.deletar(id);
+		return ResponseEntity.ok(mensagem);
 	}
 	
 	@PatchMapping
