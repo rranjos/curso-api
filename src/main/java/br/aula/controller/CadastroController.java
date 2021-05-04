@@ -50,10 +50,10 @@ public class CadastroController {
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<Boolean> deletar (@RequestParam("identificador") Integer id){
+	public ResponseEntity<String> deletar (@RequestParam("identificador") Integer id){
 		
-		Boolean deletado = service.deletar(id);
-		return ResponseEntity.ok(deletado);
+		String mensagem = service.deletar(id);
+		return ResponseEntity.ok(mensagem);
 	}
 	
 	@PatchMapping
