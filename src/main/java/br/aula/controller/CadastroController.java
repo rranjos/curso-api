@@ -50,7 +50,7 @@ public class CadastroController {
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<String> deletar (@RequestParam("identificador") Integer id){
+	public ResponseEntity<String> deletar (@RequestParam("identificador") Integer id) throws Exception{
 		
 		String mensagem = service.deletar(id);
 		return ResponseEntity.ok(mensagem);

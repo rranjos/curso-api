@@ -50,10 +50,33 @@ public class CadastroServiceImpl implements CadastroService{
 	// Todo imlementar regra que só permita deletar usuário que não são do perfil adm
 
 	@Override
-	public String deletar(Integer id) {
+	public String deletar(Integer id) throws Exception {
 		
 		String mensagem = "";
 		
+		try {
+			
+			//Bloco com as operações em caso de normalidade ou o ideal a ser feito
+			CadastroEntity entity = new CadastroEntity();
+			entity.setId(id);
+			
+			//Recuperar o registro que será deletado
+			Optional<CadastroEntity> resultado = cadastroRepository.findById(id);
+			CadastroEntity e= resultado.get();
+			
+			//Verificar se o resgistro é do perfil adm. Se não for, permitir deletar. Caso seja emitir uma msg de não permitido
+			
+			if(!e.getPerfil().equals("adm") && !e.getAtivo()) {
+				cadastroRepository.delete(entity);
+			}
+		} catch(Exception exeption) {
+			// Bloco com as operações em caso de não conseguir executar o bloco principal
+			throw new Exception("Erro ao tentar excluir o registro!");
+			
+		}
+		
+		return mensagem;
+		/* um exemplo
 		CadastroEntity entity = new CadastroEntity();
 		entity.setId(id);
 		
@@ -73,6 +96,7 @@ public class CadastroServiceImpl implements CadastroService{
 		}
 		
 		return mensagem;
+		*/
 	}
 	
 	@Override
@@ -80,6 +104,9 @@ public class CadastroServiceImpl implements CadastroService{
 		
 		Optional<CadastroEntity> resultado = cadastroRepository.findById(entidade.getId());
 		CadastroEntity e = resultado.get();
+		
+		//testar o e verificando se o perfil não é adm, caso seja tru executar o bloco abaixo.
+		
 		
 		if(entidade.getNome() != null) {
 			e.setNome(entidade.getNome());
