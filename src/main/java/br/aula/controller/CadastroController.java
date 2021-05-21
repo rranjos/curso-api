@@ -50,11 +50,12 @@ public class CadastroController {
 		return ResponseEntity.ok(salvo);
 	}
 	
+	//se nao for possivel deletar, informar ao usuario `nao foi possivel deletar o registro selecionado`
 	@DeleteMapping
-	public ResponseEntity<Boolean> deletar(@RequestParam("identificador") Integer id){
+	public ResponseEntity<String> deletar(@RequestParam("identificador") Integer id){
 		
-		Boolean deletado = service.deletar(id);
-		return ResponseEntity.ok(deletado);
+		String mensagem = service.deletar(id);
+		return ResponseEntity.ok(mensagem);
 	
 	}
 	

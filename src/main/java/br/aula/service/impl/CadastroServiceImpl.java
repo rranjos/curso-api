@@ -44,9 +44,9 @@ public class CadastroServiceImpl implements CadastroService{
 	// TODO Implementar regra que só permita deletar usuários que não são do perfil adm
 	
 	@Override
-	public Boolean deletar(Integer id) {
+	public String deletar(Integer id) {
 		     
-		Boolean foiDeletado = false;
+		String mensagem = "";
 		
 		CadastroEntity entity = new CadastroEntity();
 		     entity.setId(id);
@@ -56,12 +56,14 @@ public class CadastroServiceImpl implements CadastroService{
 				CadastroEntity e = resultado.get();
 
 				//vericar se o registro é do perfil adm. Se não for permitir deletar. Caso seja emitir mensagem de não permitido
-				if(!e.getPerfil().equals("adm")) {
+				if(!e.getPerfil().equals("adm") && !e.getAtivo()) {
 					cadastroRepository.delete(entity);	
-					foiDeletado = true;
+					mensagem = "O registro foi deletado com sucesso!";
+				}else {
+					mensagem = "Não foi possível deletar o registro selecionado";
 				}
 
-				return foiDeletado;
+				return mensagem;
 	}
 	
 	@Override
@@ -69,24 +71,28 @@ public class CadastroServiceImpl implements CadastroService{
 
 		Optional<CadastroEntity> resultado = cadastroRepository.findById(entidade.getId());
 		CadastroEntity e = resultado.get();
-
-		if(entidade.getNome() != null) {			
-			e.setNome(entidade.getNome());
+		boolean ehEditado = false;
+		//verificar se o registro é do perfil adm. Se não for, permitir editar.
+		if(!e.getPerfil().equals("adm")) {
+			if(entidade.getNome() != null) {			
+				e.setNome(entidade.getNome());
+			}
+			
+			if(entidade.getEndereco() != null) {			
+				e.setEndereco(entidade.getEndereco());
+			}
+			
+			if(entidade.getSexo() != null) {			
+				e.setSexo(entidade.getSexo());
+			}
+			
+			if(entidade.getTelefone() != null) {			
+				e.setTelefone(entidade.getTelefone());
+			}
+			cadastroRepository.save(e);
+		    ehEditado = true;
 		}
 
-		if(entidade.getEndereco() != null) {			
-			e.setEndereco(entidade.getEndereco());
-		}
-
-		if(entidade.getSexo() != null) {			
-			e.setSexo(entidade.getSexo());
-		}
-
-		if(entidade.getTelefone() != null) {			
-			e.setTelefone(entidade.getTelefone());
-		}
-
-		cadastroRepository.save(e);
-		return true;
+		return ehEditado;
 	}
 }
